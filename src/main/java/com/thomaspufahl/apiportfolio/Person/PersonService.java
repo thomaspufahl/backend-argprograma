@@ -27,6 +27,12 @@ public class PersonService implements PersonManager{
     }
 
     @Override
+    public void deleteAllPersons() {
+        repository.deleteAll();
+        logger.info("Persons has been deleted");
+    }
+
+    @Override
     public void deletePersonById(Integer id) {
         repository.deleteById(id);
         logger.info("Person has been deleted");
@@ -43,6 +49,7 @@ public class PersonService implements PersonManager{
         logger.info("Modifying person...");
         findPersonById(id).setFirstname(firstname);
         findPersonById(id).setLastname(lastname);
+        repository.save(findPersonById(id));
         return findPersonById(id);
     }
 }
