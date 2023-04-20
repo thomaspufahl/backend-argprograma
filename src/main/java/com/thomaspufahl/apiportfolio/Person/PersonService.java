@@ -37,4 +37,12 @@ public class PersonService implements PersonManager{
         logger.info("Finding person...");
         return repository.findById(id).orElseThrow();
     }
+
+    @Override
+    public Person editPersonById(Integer id, String firstname, String lastname) {
+        logger.info("Modifying person...");
+        findPersonById(id).setFirstname(firstname);
+        findPersonById(id).setLastname(lastname);
+        return findPersonById(id);
+    }
 }

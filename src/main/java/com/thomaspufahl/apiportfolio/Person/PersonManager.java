@@ -7,4 +7,5 @@ public interface PersonManager {
     void savePerson(Person person);
     void deletePersonById(Integer id);
     Person findPersonById(Integer id);
+    Person editPersonById(Integer id, String firstname, String lastname);
 }
