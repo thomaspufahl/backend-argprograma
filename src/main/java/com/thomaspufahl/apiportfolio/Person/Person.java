@@ -18,4 +18,9 @@ public class Person {
     private Integer id;
     private String firstname;
     private String lastname;
+
+    Person(String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
 }
