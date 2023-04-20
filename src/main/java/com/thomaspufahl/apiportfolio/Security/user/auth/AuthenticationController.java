@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.Security.auth;
+package com.thomaspufahl.apiportfolio.Security.user.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

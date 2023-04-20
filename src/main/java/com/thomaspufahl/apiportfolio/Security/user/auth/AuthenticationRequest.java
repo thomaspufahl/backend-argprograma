@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.Security.auth;
+package com.thomaspufahl.apiportfolio.Security.user.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

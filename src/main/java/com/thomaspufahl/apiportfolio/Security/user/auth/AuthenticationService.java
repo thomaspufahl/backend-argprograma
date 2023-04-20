@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.Security.auth;
+package com.thomaspufahl.apiportfolio.Security.user.auth;
 
 import com.thomaspufahl.apiportfolio.Security.config.JwtService;
 import com.thomaspufahl.apiportfolio.Security.user.User;
