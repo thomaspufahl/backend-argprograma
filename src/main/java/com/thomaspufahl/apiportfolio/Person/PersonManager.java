@@ -3,8 +3,8 @@ package com.thomaspufahl.apiportfolio.Person;
 import java.util.List;
 
 public interface PersonManager {
-    public List<Person> getPersons();
-    public void savePerson(Person person);
-    public void deletePersonById(Integer id);
-    public Person findPersonById(Integer id);
+    List<Person> getPersons();
+    void savePerson(Person person);
+    void deletePersonById(Integer id);
+    Person findPersonById(Integer id);
 }
