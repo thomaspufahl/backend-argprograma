@@ -19,8 +19,8 @@ public class PersonController {
     public Person getPersonById(@PathVariable Integer person_id) {
         return manager.findPersonById(person_id);
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Person> addPerson(@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname) {
         Person person = new Person(firstname, lastname);
         manager.savePerson(person);
