@@ -1,5 +1,6 @@
 package com.thomaspufahl.apiportfolio.Security.user.auth;
 
+import com.thomaspufahl.apiportfolio.Security.user.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,8 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
-    private String firstname;
-    private String lastname;
+//    private String firstname;
+//    private String lastname;
     private String email;
     private String password;
+    private Role role;
 }
