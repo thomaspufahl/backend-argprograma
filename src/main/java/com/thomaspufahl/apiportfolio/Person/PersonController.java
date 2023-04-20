@@ -14,25 +14,27 @@ public class PersonController {
     private final PersonManager manager;
     @GetMapping
     public List<Person> getPersons() {return manager.getPersons();}
-
-    @GetMapping("person/{person_id}")
+    @GetMapping("/{person_id}")
     public Person getPersonById(@PathVariable Integer person_id) {
         return manager.findPersonById(person_id);
     }
-
-    @PostMapping("add")
-    public ResponseEntity<Person> addPerson(Person person) {
+    @PostMapping("/add")
+    public ResponseEntity<Person> addPerson(@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname) {
+        Person person = new Person(firstname, lastname);
         manager.savePerson(person);
         return new ResponseEntity<>(person, HttpStatus.CREATED);
     }
-
-    @DeleteMapping("remove/{person_id}")
+    @DeleteMapping("/remove")
+    public ResponseEntity<?> removePerson() {
+        manager.deleteAllPersons();
+        return new ResponseEntity<>("Persons deleted", HttpStatus.OK);
+    }
+    @DeleteMapping("/remove/{person_id}")
     public ResponseEntity<?> removePerson(@PathVariable Integer person_id) {
         manager.deletePersonById(person_id);
         return new ResponseEntity<>("Person deleted", HttpStatus.OK);
     }
-
-    @PutMapping("edit/{person_id}")
+    @PutMapping("/edit/{person_id}")
     public Person editPerson(
             @PathVariable Integer person_id,
             @RequestParam("firstname") String firstname,
