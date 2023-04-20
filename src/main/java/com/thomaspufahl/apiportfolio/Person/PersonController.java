@@ -3,6 +3,7 @@ package com.thomaspufahl.apiportfolio.Person;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class PersonController {
     public Person getPersonById(@PathVariable Integer person_id) {
         return manager.findPersonById(person_id);
     }
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public ResponseEntity<Person> addPerson(@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname) {
         Person person = new Person(firstname, lastname);
