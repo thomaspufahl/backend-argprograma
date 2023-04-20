@@ -5,6 +5,7 @@ import java.util.List;
 public interface PersonManager {
     List<Person> getPersons();
     void savePerson(Person person);
+    void deleteAllPersons();
     void deletePersonById(Integer id);
     Person findPersonById(Integer id);
     Person editPersonById(Integer id, String firstname, String lastname);
