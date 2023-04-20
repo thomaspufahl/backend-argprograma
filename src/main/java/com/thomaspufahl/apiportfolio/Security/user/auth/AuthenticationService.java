@@ -3,7 +3,6 @@ package com.thomaspufahl.apiportfolio.Security.user.auth;
 import com.thomaspufahl.apiportfolio.Security.config.JwtService;
 import com.thomaspufahl.apiportfolio.Security.user.User;
 import com.thomaspufahl.apiportfolio.Security.user.UserRepository;
-import com.thomaspufahl.apiportfolio.Security.user.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
