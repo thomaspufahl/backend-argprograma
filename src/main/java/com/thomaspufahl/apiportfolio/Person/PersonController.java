@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/person")
 @RequiredArgsConstructor
+@PreAuthorize("hasAuthority('ADMIN')")
 public class PersonController {
     private final PersonManager manager;
     @GetMapping
@@ -20,7 +21,6 @@ public class PersonController {
         return manager.findPersonById(person_id);
     }
     @PostMapping("/add")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Person> addPerson(@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname) {
         Person person = new Person(firstname, lastname);
         manager.savePerson(person);
