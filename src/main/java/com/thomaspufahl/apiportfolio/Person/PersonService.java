@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,41 +16,45 @@ public class PersonService implements PersonManager{
 
     private final PersonRepository repository;
     @Override
-    public List<Person> getPersons() {
+    public List<Person> getAll() {
         logger.info("Sending list of persons...");
         return repository.findAll();
     }
 
     @Override
-    public void savePerson(Person person) {
+    public void save(Person person) {
         repository.save(person);
         logger.info("Person has been saved");
     }
 
     @Override
-    public void deleteAllPersons() {
+    public void deleteAll() {
         repository.deleteAll();
         logger.info("Persons has been deleted");
     }
 
     @Override
-    public void deletePersonById(Integer id) {
+    public void deleteById(Integer id) {
         repository.deleteById(id);
         logger.info("Person has been deleted");
     }
 
     @Override
-    public Person findPersonById(Integer id) {
+    public Optional<Person> getById(Integer id) {
         logger.info("Finding person...");
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id);
     }
 
     @Override
-    public Person editPersonById(Integer id, String firstname, String lastname) {
+    public Optional<Person> editById(Integer id, String firstname, String lastname) {
         logger.info("Modifying person...");
-        findPersonById(id).setFirstname(firstname);
-        findPersonById(id).setLastname(lastname);
-        repository.save(findPersonById(id));
-        return findPersonById(id);
+        getById(id).orElseThrow().setFirstname(firstname);
+        getById(id).orElseThrow().setLastname(lastname);
+        repository.save(getById(id).orElseThrow());
+        return getById(id);
     }
+
+
+
+
 }
