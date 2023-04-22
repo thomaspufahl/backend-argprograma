@@ -16,11 +16,4 @@ public class RegisterRequest {
     private String email;
     private String password;
     private Role role;
-
-    public Role setRoleWithDefaultValue() {
-        if (getRole()!=null) {
-            return getRole();
-        }
-        return Role.USER;
-    }
 }
