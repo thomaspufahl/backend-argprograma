@@ -23,7 +23,8 @@ public class PersonController {
     public ResponseEntity<Optional<Person>> getById(@PathVariable Integer person_id) {
         return new ResponseEntity<>(manager.getById(person_id), HttpStatus.OK);
     }
-    @PreAuthorize("hasAuthority('USER')")
+//    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @PostMapping("/modify/add")
     public ResponseEntity<Person> add(@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname) {
         Person person = new Person(firstname, lastname);
@@ -36,13 +37,13 @@ public class PersonController {
         manager.deleteAll();
         return new ResponseEntity<>("Persons deleted", HttpStatus.OK);
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @DeleteMapping("/modify/remove/{person_id}")
     public ResponseEntity<String> removeById(@PathVariable Integer person_id) {
         manager.deleteById(person_id);
         return new ResponseEntity<>("Person deleted", HttpStatus.OK);
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @PutMapping("/modify/edit/{person_id}")
     public ResponseEntity<Optional<Person>> editById(
             @PathVariable Integer person_id,
