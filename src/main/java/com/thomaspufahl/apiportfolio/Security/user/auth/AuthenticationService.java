@@ -1,6 +1,7 @@
 package com.thomaspufahl.apiportfolio.Security.user.auth;
 
 import com.thomaspufahl.apiportfolio.Security.config.JwtService;
+import com.thomaspufahl.apiportfolio.Security.user.Role;
 import com.thomaspufahl.apiportfolio.Security.user.User;
 import com.thomaspufahl.apiportfolio.Security.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class AuthenticationService {
 //                .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
+                .role(Role.USER)
                 .build();
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
