@@ -1,6 +1,6 @@
 package com.thomaspufahl.apiportfolio.Security.config;
 
-import com.thomaspufahl.apiportfolio.Security.user.UserRepository;
+import com.thomaspufahl.apiportfolio.User.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

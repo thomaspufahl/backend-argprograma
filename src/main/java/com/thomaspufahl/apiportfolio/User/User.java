@@ -1,5 +1,6 @@
-package com.thomaspufahl.apiportfolio.Security.user;
+package com.thomaspufahl.apiportfolio.User;
 
+import com.thomaspufahl.apiportfolio.Security.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

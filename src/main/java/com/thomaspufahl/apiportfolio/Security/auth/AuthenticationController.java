@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.Security.user.auth;
+package com.thomaspufahl.apiportfolio.Security.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
