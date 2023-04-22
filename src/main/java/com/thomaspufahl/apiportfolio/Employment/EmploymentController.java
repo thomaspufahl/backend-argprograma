@@ -13,7 +13,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/employment")
 @RequiredArgsConstructor
-//@PreAuthorize("hasAuthority('ADMIN')")
 public class EmploymentController {
 
     private final EmploymentManager manager;
@@ -27,25 +26,27 @@ public class EmploymentController {
     public ResponseEntity<Optional<Employment>> getById(@PathVariable Integer employment_id) {
         return new ResponseEntity<>(manager.getById(employment_id), HttpStatus.OK);
     }
-
-    @PostMapping("/add")
+    @PreAuthorize("hasAuthority('USER')")
+    @PostMapping("/modify/add")
     public ResponseEntity<Employment> add(@RequestParam("name") String name, @RequestParam("description") String description) {
         Employment employment = new Employment(name, description);
         manager.save(employment);
         return new ResponseEntity<>(employment, HttpStatus.CREATED);
     }
-    @DeleteMapping("/remove")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @DeleteMapping("/modify/admin/remove")
     public ResponseEntity<String> removeAll() {
         manager.deleteAll();
         return new ResponseEntity<>("Employments deleted", HttpStatus.OK);
     }
-    @DeleteMapping("/remove/{employment_id}")
+    @PreAuthorize("hasAuthority('USER')")
+    @DeleteMapping("/modify/remove/{employment_id}")
     public ResponseEntity<String> removeById(@PathVariable Integer employment_id) {
         manager.deleteById(employment_id);
         return new ResponseEntity<>("Employment deleted", HttpStatus.OK);
     }
-
-    @PutMapping("/edit/{employment_id}")
+    @PreAuthorize("hasAuthority('USER')")
+    @PutMapping("/modify/edit/{employment_id}")
     public ResponseEntity<Optional<Employment>> editById(
             @PathVariable Integer employment_id,
             @RequestParam("name") String name,
@@ -54,5 +55,9 @@ public class EmploymentController {
         return new ResponseEntity<>(manager.editById(employment_id, name, description), HttpStatus.OK);
     }
 
+    @RequestMapping("**")
+    public ResponseEntity<String> notFound() {
+        return new ResponseEntity<>("This route not exists", HttpStatus.NOT_FOUND);
+    }
 
 }

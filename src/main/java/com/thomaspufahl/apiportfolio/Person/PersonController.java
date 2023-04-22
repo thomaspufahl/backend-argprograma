@@ -13,7 +13,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/person")
 @RequiredArgsConstructor
-//@PreAuthorize("hasAuthority('ADMIN')")
 public class PersonController {
     private final PersonManager manager;
     @GetMapping
@@ -24,28 +23,37 @@ public class PersonController {
     public ResponseEntity<Optional<Person>> getById(@PathVariable Integer person_id) {
         return new ResponseEntity<>(manager.getById(person_id), HttpStatus.OK);
     }
-    @PostMapping("/add")
+    @PreAuthorize("hasAuthority('USER')")
+    @PostMapping("/modify/add")
     public ResponseEntity<Person> add(@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname) {
         Person person = new Person(firstname, lastname);
         manager.save(person);
         return new ResponseEntity<>(person, HttpStatus.CREATED);
     }
-    @DeleteMapping("/remove")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @DeleteMapping("/modify/admin/remove")
     public ResponseEntity<String> removeAll() {
         manager.deleteAll();
         return new ResponseEntity<>("Persons deleted", HttpStatus.OK);
     }
-    @DeleteMapping("/remove/{person_id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @DeleteMapping("/modify/remove/{person_id}")
     public ResponseEntity<String> removeById(@PathVariable Integer person_id) {
         manager.deleteById(person_id);
         return new ResponseEntity<>("Person deleted", HttpStatus.OK);
     }
-    @PutMapping("/edit/{person_id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PutMapping("/modify/edit/{person_id}")
     public ResponseEntity<Optional<Person>> editById(
             @PathVariable Integer person_id,
             @RequestParam("firstname") String firstname,
             @RequestParam("lastname") String lastname
     ) {
         return new ResponseEntity<>(manager.editById(person_id, firstname, lastname), HttpStatus.OK);
+    }
+
+    @RequestMapping("**")
+    public ResponseEntity<String> notFound() {
+        return new ResponseEntity<>("This route not exists", HttpStatus.NOT_FOUND);
     }
 }
