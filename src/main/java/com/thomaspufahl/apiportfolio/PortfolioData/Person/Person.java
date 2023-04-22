@@ -18,9 +18,11 @@ public class Person {
     private Integer id;
     private String firstname;
     private String lastname;
+    private String description;
 
-    Person(String firstname, String lastname) {
+    Person(String firstname, String lastname, String description) {
         this.firstname = firstname;
         this.lastname = lastname;
+        this.description = description;
     }
 }

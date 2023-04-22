@@ -9,5 +9,5 @@ public interface PersonManager {
     void deleteAll();
     void deleteById(Integer id);
     Optional<Person> getById(Integer id);
-    Optional<Person> editById(Integer id, String firstname, String lastname);
+    Optional<Person> editById(Integer id, Person person);
 }

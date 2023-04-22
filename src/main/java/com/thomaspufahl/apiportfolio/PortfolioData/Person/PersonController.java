@@ -25,8 +25,7 @@ public class PersonController {
     }
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @PostMapping("/modify/add")
-    public ResponseEntity<Person> add(@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname) {
-        Person person = new Person(firstname, lastname);
+    public ResponseEntity<Person> add(@RequestBody Person person) {
         manager.save(person);
         return new ResponseEntity<>(person, HttpStatus.CREATED);
     }
@@ -46,10 +45,9 @@ public class PersonController {
     @PutMapping("/modify/edit/{person_id}")
     public ResponseEntity<Optional<Person>> editById(
             @PathVariable Integer person_id,
-            @RequestParam("firstname") String firstname,
-            @RequestParam("lastname") String lastname
+            @RequestBody Person person
     ) {
-        return new ResponseEntity<>(manager.editById(person_id, firstname, lastname), HttpStatus.OK);
+        return new ResponseEntity<>(manager.editById(person_id, person), HttpStatus.OK);
     }
 
     @RequestMapping("**")

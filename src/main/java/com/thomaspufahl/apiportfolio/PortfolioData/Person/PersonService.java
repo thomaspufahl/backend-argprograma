@@ -46,10 +46,11 @@ public class PersonService implements PersonManager{
     }
 
     @Override
-    public Optional<Person> editById(Integer id, String firstname, String lastname) {
+    public Optional<Person> editById(Integer id, Person person) {
         logger.info("Modifying person...");
-        getById(id).orElseThrow().setFirstname(firstname);
-        getById(id).orElseThrow().setLastname(lastname);
+        getById(id).orElseThrow().setFirstname(person.getFirstname());
+        getById(id).orElseThrow().setLastname(person.getLastname());
+        getById(id).orElseThrow().setDescription(person.getDescription());
         repository.save(getById(id).orElseThrow());
         return getById(id);
     }
