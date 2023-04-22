@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.Employment;
+package com.thomaspufahl.apiportfolio.PortfolioData.Employment;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

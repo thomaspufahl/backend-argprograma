@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.User;
+package com.thomaspufahl.apiportfolio.Security.User;
 
 import com.thomaspufahl.apiportfolio.Security.Role;
 import jakarta.persistence.*;
@@ -24,8 +24,6 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-//    private String firstname;
-//    private String lastname;
     private String email;
     private String password;
 

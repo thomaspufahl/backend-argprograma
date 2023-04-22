@@ -2,8 +2,8 @@ package com.thomaspufahl.apiportfolio.Security.auth;
 
 import com.thomaspufahl.apiportfolio.Security.config.JwtService;
 import com.thomaspufahl.apiportfolio.Security.Role;
-import com.thomaspufahl.apiportfolio.User.User;
-import com.thomaspufahl.apiportfolio.User.UserRepository;
+import com.thomaspufahl.apiportfolio.Security.User.User;
+import com.thomaspufahl.apiportfolio.Security.User.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,8 +21,6 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
-//                .firstname(request.getFirstname())
-//                .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)

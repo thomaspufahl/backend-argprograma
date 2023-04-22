@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.Person;
+package com.thomaspufahl.apiportfolio.PortfolioData.Employment;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,15 +12,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table
-public class Person {
+public class Employment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String firstname;
-    private String lastname;
 
-    Person(String firstname, String lastname) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    private String name;
+    private String description;
+
+    public Employment(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 }

@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.Person;
+package com.thomaspufahl.apiportfolio.PortfolioData.Person;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,6 @@ public class PersonController {
     public ResponseEntity<Optional<Person>> getById(@PathVariable Integer person_id) {
         return new ResponseEntity<>(manager.getById(person_id), HttpStatus.OK);
     }
-//    @PreAuthorize("hasAuthority('USER')")
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @PostMapping("/modify/add")
     public ResponseEntity<Person> add(@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname) {
