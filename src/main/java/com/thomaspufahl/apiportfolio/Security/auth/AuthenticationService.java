@@ -40,7 +40,12 @@ public class AuthenticationService {
                 )
         );
         var user = repository.findByEmail(request.getEmail()).orElseThrow();
-        var jwtToken = jwtService.generateToken(user);
+
+        var jwtToken = jwtService.generateToken(
+                jwtService.createClaim("admin", user.isAdmin()),
+                jwtService.createClaim("logged", true),
+                user
+        );
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();

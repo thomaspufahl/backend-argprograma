@@ -1,5 +1,6 @@
 package com.thomaspufahl.apiportfolio.Security.config;
 
+import com.thomaspufahl.apiportfolio.Security.Claim;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -21,6 +22,10 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
+    public Claim createClaim(String key, Object value) {
+        return new Claim(key, value);
+    }
+
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
@@ -34,6 +39,17 @@ public class JwtService {
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
+                .compact();
+    }
+    public String generateToken(Claim claim, Claim claimTwo, UserDetails userDetails) {
+        return Jwts
+                .builder()
+                .claim(claim.getKey(), claim.getValue())
+                .claim(claimTwo.getKey(), claimTwo.getValue())
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
