@@ -1,6 +1,6 @@
 package com.thomaspufahl.apiportfolio.Security.auth;
 
-import com.thomaspufahl.apiportfolio.Security.Role;
+import com.thomaspufahl.apiportfolio.Security.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

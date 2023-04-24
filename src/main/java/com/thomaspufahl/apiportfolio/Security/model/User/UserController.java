@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.Security.User;
+package com.thomaspufahl.apiportfolio.Security.model.User;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,17 +12,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
-@PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
-    private final UserManager manager;
+
+    private final UserManager userManager;
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public ResponseEntity<List<User>> getAll() {
-        return new ResponseEntity<>(manager.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(userManager.getAll(), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping
     public ResponseEntity<String> removeAll() {
-        manager.deleteAll();
+        userManager.deleteAll();
         return new ResponseEntity<>("Users deleted", HttpStatus.OK);
     }
 

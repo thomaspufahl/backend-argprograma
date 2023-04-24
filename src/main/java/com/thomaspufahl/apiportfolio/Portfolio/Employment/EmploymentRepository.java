@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.PortfolioData.Employment;
+package com.thomaspufahl.apiportfolio.Portfolio.Employment;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

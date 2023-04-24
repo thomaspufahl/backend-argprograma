@@ -1,6 +1,6 @@
-package com.thomaspufahl.apiportfolio.Security.User;
+package com.thomaspufahl.apiportfolio.Security.model.User;
 
-import com.thomaspufahl.apiportfolio.Security.Role;
+import com.thomaspufahl.apiportfolio.Security.model.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,7 +33,6 @@ public class User implements UserDetails {
     public boolean isAdmin() {
         return getRole() == Role.ADMIN;
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

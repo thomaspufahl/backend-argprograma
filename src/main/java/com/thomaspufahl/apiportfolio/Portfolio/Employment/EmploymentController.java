@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.PortfolioData.Employment;
+package com.thomaspufahl.apiportfolio.Portfolio.Employment;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

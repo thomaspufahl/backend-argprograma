@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.PortfolioData.Person;
+package com.thomaspufahl.apiportfolio.Portfolio.Person;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,41 +14,65 @@ import java.util.Optional;
 @RequestMapping("/person")
 @RequiredArgsConstructor
 public class PersonController {
-    private final PersonManager manager;
+
+    private final PersonManager personManager;
     @GetMapping
     public ResponseEntity<List<Person>> getAll() {
-        return new ResponseEntity<>(manager.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(personManager.getAll(), HttpStatus.OK);
     }
+
     @GetMapping("/{person_id}")
     public ResponseEntity<Optional<Person>> getById(@PathVariable Integer person_id) {
-        return new ResponseEntity<>(manager.getById(person_id), HttpStatus.OK);
+        return new ResponseEntity<>(personManager.getById(person_id), HttpStatus.OK);
     }
+
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @PostMapping("/modify/add")
     public ResponseEntity<Person> add(@RequestBody Person person) {
-        manager.save(person);
+        personManager.save(person);
         return new ResponseEntity<>(person, HttpStatus.CREATED);
     }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/modify/admin/remove")
     public ResponseEntity<String> removeAll() {
-        manager.deleteAll();
+        personManager.deleteAll();
         return new ResponseEntity<>("Persons deleted", HttpStatus.OK);
     }
+
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @DeleteMapping("/modify/remove/{person_id}")
     public ResponseEntity<String> removeById(@PathVariable Integer person_id) {
-        manager.deleteById(person_id);
+        personManager.deleteById(person_id);
         return new ResponseEntity<>("Person deleted", HttpStatus.OK);
     }
+
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @PutMapping("/modify/edit/{person_id}")
     public ResponseEntity<Optional<Person>> editById(
             @PathVariable Integer person_id,
             @RequestBody Person person
     ) {
-        return new ResponseEntity<>(manager.editById(person_id, person), HttpStatus.OK);
+        return new ResponseEntity<>(personManager.editById(person_id, person), HttpStatus.OK);
     }
+
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    @GetMapping("/user/{user_email}")
+    public ResponseEntity<Person> getByUserEmail(
+            @PathVariable String user_email
+    ) {
+        return new ResponseEntity<>(personManager.getByUserEmail(user_email).orElseThrow(), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    @PatchMapping("/user/{user_email}")
+    public ResponseEntity<Person> editPersonByUserEmail(
+            @PathVariable String user_email,
+            @RequestBody Person person
+    ) {
+        return new ResponseEntity<>(personManager.editById(personManager.getByUserEmail(user_email).orElseThrow().getId(), person).orElseThrow(), HttpStatus.OK);
+    }
+
 
     @RequestMapping("**")
     public ResponseEntity<String> notFound() {

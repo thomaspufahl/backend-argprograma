@@ -1,6 +1,6 @@
 package com.thomaspufahl.apiportfolio.Security.config;
 
-import com.thomaspufahl.apiportfolio.Security.Claim;
+import com.thomaspufahl.apiportfolio.Security.model.Claim;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

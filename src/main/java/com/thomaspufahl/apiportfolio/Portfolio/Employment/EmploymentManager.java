@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.PortfolioData.Employment;
+package com.thomaspufahl.apiportfolio.Portfolio.Employment;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.Security;
+package com.thomaspufahl.apiportfolio.Security.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

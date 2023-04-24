@@ -1,6 +1,6 @@
 package com.thomaspufahl.apiportfolio.Security.auth;
 
-import com.thomaspufahl.apiportfolio.Security.User.UserService;
+import com.thomaspufahl.apiportfolio.Tool.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,16 +13,17 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
 
     private final AuthenticationService authService;
-    private final UserService userService;
+    private final EntityManager entityManager;
     @PostMapping("/register")
     public ResponseEntity<?> register(
         @RequestBody RegisterRequest request
     ) {
-        if (userService.existsByEmail(request.getEmail())) {
+        if (entityManager.getUserManager().existsByEmail(request.getEmail())) {
             return new ResponseEntity<>("ERROR: This email is already in use", HttpStatus.BAD_REQUEST);
         }
-
-        return ResponseEntity.ok(authService.register(request));
+        AuthenticationResponse token = authService.register(request);
+        entityManager.getPersonManager().createRegWithUser(entityManager.getUserManager().findByEmail(request.getEmail()).orElseThrow());
+        return ResponseEntity.ok(token);
     }
 
     @PostMapping("/authenticate")
