@@ -1,5 +1,6 @@
 package com.thomaspufahl.apiportfolio.Portfolio.Employment;
 
+import com.thomaspufahl.apiportfolio.Portfolio.Person.Person;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,49 +16,55 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class EmploymentController {
 
-    private final EmploymentManager manager;
-
+    private final EmploymentManager employmentManager;
     @GetMapping
     public ResponseEntity<List<Employment>> getAll() {
-        return new ResponseEntity<>(manager.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(employmentManager.all(), HttpStatus.OK);
     }
 
-    @GetMapping("/{employment_id}")
-    public ResponseEntity<Optional<Employment>> getById(@PathVariable Integer employment_id) {
-        return new ResponseEntity<>(manager.getById(employment_id), HttpStatus.OK);
+    @GetMapping("/person/{person_id}")
+    public ResponseEntity<List<Employment>> getAllByPerson(@PathVariable Integer person_id) {
+        Person person = new Person();
+        person.setId(person_id);
+        return new ResponseEntity<>(employmentManager.allByPerson(person), HttpStatus.OK);
     }
-    @PreAuthorize("hasAuthority('USER')")
+
+    @GetMapping("/{employmen_id}")
+    public ResponseEntity<Optional<Employment>> getById(@PathVariable Integer employmen_id) {
+        return new ResponseEntity<>(employmentManager.getById(employmen_id), HttpStatus.OK);
+    }
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @PostMapping("/modify/add")
-    public ResponseEntity<Employment> add(@RequestParam("name") String name, @RequestParam("description") String description) {
-        Employment employment = new Employment(name, description);
-        manager.save(employment);
-        return new ResponseEntity<>(employment, HttpStatus.CREATED);
+    public ResponseEntity<String> create(
+            @RequestBody Employment employment
+    ) {
+        employmentManager.create(employment);
+        return new ResponseEntity<>("Created", HttpStatus.CREATED);
     }
+
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    @PutMapping("/modify/edit/{employment_id}")
+    public ResponseEntity<Optional<Employment>> edit(
+            @PathVariable Integer employment_id,
+            @RequestBody Employment employment
+    ) {
+        return new ResponseEntity<>(employmentManager.editById(employment_id, employment), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    @DeleteMapping("/modify/remove/{employment_id}")
+    public ResponseEntity<String> edit(
+            @PathVariable Integer employment_id
+    ) {
+        employmentManager.deleteById(employment_id);
+        return new ResponseEntity<>("Deleted", HttpStatus.OK);
+    }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/modify/admin/remove")
-    public ResponseEntity<String> removeAll() {
-        manager.deleteAll();
-        return new ResponseEntity<>("Employments deleted", HttpStatus.OK);
-    }
-    @PreAuthorize("hasAuthority('USER')")
-    @DeleteMapping("/modify/remove/{employment_id}")
-    public ResponseEntity<String> removeById(@PathVariable Integer employment_id) {
-        manager.deleteById(employment_id);
-        return new ResponseEntity<>("Employment deleted", HttpStatus.OK);
-    }
-    @PreAuthorize("hasAuthority('USER')")
-    @PutMapping("/modify/edit/{employment_id}")
-    public ResponseEntity<Optional<Employment>> editById(
-            @PathVariable Integer employment_id,
-            @RequestParam("name") String name,
-            @RequestParam("description") String description
-    ) {
-        return new ResponseEntity<>(manager.editById(employment_id, name, description), HttpStatus.OK);
-    }
-
-    @RequestMapping("**")
-    public ResponseEntity<String> notFound() {
-        return new ResponseEntity<>("This route not exists", HttpStatus.NOT_FOUND);
+    public ResponseEntity<String> delete() {
+        employmentManager.delete();
+        return new ResponseEntity<>("All employments deleted", HttpStatus.OK);
     }
 
 }
