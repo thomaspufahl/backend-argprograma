@@ -1,5 +1,6 @@
 package com.thomaspufahl.apiportfolio.Portfolio.Person;
 
+import com.thomaspufahl.apiportfolio.Portfolio.Education.Education;
 import com.thomaspufahl.apiportfolio.Portfolio.Employment.Employment;
 import com.thomaspufahl.apiportfolio.Security.model.User.User;
 import jakarta.persistence.*;
@@ -30,6 +31,9 @@ public class Person {
 
     @OneToMany(mappedBy = "person")
     private Set<Employment> employment;
+
+    @OneToMany(mappedBy = "person")
+    private Set<Education> educations;
 
     public Person(User user) {
         this.user = user;
