@@ -2,6 +2,7 @@ package com.thomaspufahl.apiportfolio.Portfolio.Person;
 
 import com.thomaspufahl.apiportfolio.Portfolio.Education.Education;
 import com.thomaspufahl.apiportfolio.Portfolio.Employment.Employment;
+import com.thomaspufahl.apiportfolio.Portfolio.Skill.Skill;
 import com.thomaspufahl.apiportfolio.Security.model.User.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,10 +31,13 @@ public class Person {
     private User user;
 
     @OneToMany(mappedBy = "person")
-    private Set<Employment> employment;
+    private Set<Employment> employments;
 
     @OneToMany(mappedBy = "person")
     private Set<Education> educations;
+
+    @OneToMany(mappedBy = "person")
+    private Set<Skill> skills;
 
     public Person(User user) {
         this.user = user;

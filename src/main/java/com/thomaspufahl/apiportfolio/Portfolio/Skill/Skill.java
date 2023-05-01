@@ -1,6 +1,6 @@
-package com.thomaspufahl.apiportfolio.Portfolio.Responsibility;
+package com.thomaspufahl.apiportfolio.Portfolio.Skill;
 
-import com.thomaspufahl.apiportfolio.Portfolio.Employment.Employment;
+import com.thomaspufahl.apiportfolio.Portfolio.Person.Person;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,13 +13,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table
-public class Responsibility {
-
+public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String description;
+    private String name;
+    private int percentage;
 
     @ManyToOne
-    private Employment employment;
+    private Person person;
 }
