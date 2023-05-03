@@ -31,6 +31,7 @@ public class SkillService implements SkillManager {
 
     @Override
     public void create(Skill skill) {
+        skill.setPercentage(Math.max(skill.getPercentage(), 0));
         skillRepository.save(skill);
     }
 

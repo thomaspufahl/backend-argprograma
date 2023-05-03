@@ -18,7 +18,7 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private int percentage;
+    private float percentage;
 
     @ManyToOne
     private Person person;
