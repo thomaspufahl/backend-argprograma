@@ -1,4 +1,4 @@
-package com.thomaspufahl.apiportfolio.Tool;
+package com.thomaspufahl.apiportfolio.Tool.Entity;
 
 import com.thomaspufahl.apiportfolio.Portfolio.Person.PersonManager;
 import com.thomaspufahl.apiportfolio.Security.model.User.UserManager;

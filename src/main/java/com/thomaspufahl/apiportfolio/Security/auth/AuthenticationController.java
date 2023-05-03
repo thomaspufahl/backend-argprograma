@@ -1,6 +1,6 @@
 package com.thomaspufahl.apiportfolio.Security.auth;
 
-import com.thomaspufahl.apiportfolio.Tool.EntityManager;
+import com.thomaspufahl.apiportfolio.Tool.Entity.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
