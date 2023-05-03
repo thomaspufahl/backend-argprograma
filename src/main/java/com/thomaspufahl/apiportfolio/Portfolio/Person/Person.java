@@ -2,6 +2,7 @@ package com.thomaspufahl.apiportfolio.Portfolio.Person;
 
 import com.thomaspufahl.apiportfolio.Portfolio.Education.Education;
 import com.thomaspufahl.apiportfolio.Portfolio.Employment.Employment;
+import com.thomaspufahl.apiportfolio.Portfolio.Project.Project;
 import com.thomaspufahl.apiportfolio.Portfolio.Skill.Skill;
 import com.thomaspufahl.apiportfolio.Security.model.User.User;
 import jakarta.persistence.*;
@@ -38,6 +39,9 @@ public class Person {
 
     @OneToMany(mappedBy = "person")
     private Set<Skill> skills;
+
+    @OneToMany(mappedBy = "person")
+    private Set<Project> projects;
 
     public Person(User user) {
         this.user = user;
