@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ResponsibilityService implements ResponsibiltyManager{
+public class ResponsibilityService implements ResponsibilityManager {
 
     private final ResponsibilityRepository responsibilityRepository;
 

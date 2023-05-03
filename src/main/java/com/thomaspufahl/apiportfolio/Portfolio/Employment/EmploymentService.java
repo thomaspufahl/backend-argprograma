@@ -1,7 +1,7 @@
 package com.thomaspufahl.apiportfolio.Portfolio.Employment;
 
 import com.thomaspufahl.apiportfolio.Portfolio.Person.Person;
-import com.thomaspufahl.apiportfolio.Portfolio.Responsibility.ResponsibiltyManager;
+import com.thomaspufahl.apiportfolio.Portfolio.Responsibility.ResponsibilityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class EmploymentService implements EmploymentManager{
 
     private final EmploymentRepository employmentRepository;
-    private final ResponsibiltyManager responsibiltyManager;
+    private final ResponsibilityManager responsibilityManager;
 
     @Override
     public List<Employment> all() {
@@ -62,7 +62,7 @@ public class EmploymentService implements EmploymentManager{
     @Override
     @Transactional
     public void deleteById(Integer employment_id) {
-        responsibiltyManager.deleteAllByEmployment(getById(employment_id).orElseThrow());
+        responsibilityManager.deleteAllByEmployment(getById(employment_id).orElseThrow());
         employmentRepository.deleteById(employment_id);
     }
 

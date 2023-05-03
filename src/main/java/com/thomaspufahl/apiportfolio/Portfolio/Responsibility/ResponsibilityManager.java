@@ -5,7 +5,7 @@ import com.thomaspufahl.apiportfolio.Portfolio.Employment.Employment;
 import java.util.List;
 import java.util.Optional;
 
-public interface ResponsibiltyManager {
+public interface ResponsibilityManager {
     List<Responsibility> all();
     List<Responsibility> allByEmployment(Employment employment);
     Optional<Responsibility> getById(Integer responsibility_id);

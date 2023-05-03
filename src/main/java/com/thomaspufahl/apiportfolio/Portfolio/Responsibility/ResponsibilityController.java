@@ -16,23 +16,23 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ResponsibilityController {
 
-    private final ResponsibiltyManager responsibiltyManager;
+    private final ResponsibilityManager responsibilityManager;
 
     @GetMapping
     public ResponseEntity<List<Responsibility>> getAll() {
-        return new ResponseEntity<>(responsibiltyManager.all(), HttpStatus.OK);
+        return new ResponseEntity<>(responsibilityManager.all(), HttpStatus.OK);
     }
 
     @GetMapping("/employment/{employment_id}")
     public ResponseEntity<List<Responsibility>> getAllByEmployment(@PathVariable Integer employment_id) {
         Employment employment = new Employment();
         employment.setId(employment_id);
-        return new ResponseEntity<>(responsibiltyManager.allByEmployment(employment), HttpStatus.OK);
+        return new ResponseEntity<>(responsibilityManager.allByEmployment(employment), HttpStatus.OK);
     }
 
     @GetMapping("/{responsibility_id}")
     public ResponseEntity<Optional<Responsibility>> getById(@PathVariable Integer responsibility_id) {
-        return new ResponseEntity<>(responsibiltyManager.getById(responsibility_id), HttpStatus.OK);
+        return new ResponseEntity<>(responsibilityManager.getById(responsibility_id), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
@@ -42,7 +42,7 @@ public class ResponsibilityController {
             @RequestBody Responsibility responsibility
     ) {
         responsibility.setEmployment(new Employment(employment_id));
-        responsibiltyManager.create(responsibility);
+        responsibilityManager.create(responsibility);
         return new ResponseEntity<>("Created", HttpStatus.CREATED);
     }
 
@@ -52,7 +52,7 @@ public class ResponsibilityController {
             @PathVariable Integer responsibility_id,
             @RequestBody Responsibility responsibility
     ) {
-        return new ResponseEntity<>(responsibiltyManager.editById(responsibility_id, responsibility), HttpStatus.OK);
+        return new ResponseEntity<>(responsibilityManager.editById(responsibility_id, responsibility), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
@@ -60,14 +60,14 @@ public class ResponsibilityController {
     public ResponseEntity<String> edit(
             @PathVariable Integer responsibility_id
     ) {
-        responsibiltyManager.deleteById(responsibility_id);
+        responsibilityManager.deleteById(responsibility_id);
         return new ResponseEntity<>("Deleted", HttpStatus.OK);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/modify/admin/remove")
     public ResponseEntity<String> delete() {
-        responsibiltyManager.delete();
+        responsibilityManager.delete();
         return new ResponseEntity<>("All responsabilities deleted", HttpStatus.OK);
     }
 }
