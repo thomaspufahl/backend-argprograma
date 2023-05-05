@@ -61,6 +61,12 @@ public class PersonService implements PersonManager{
         if (person.getDescription()!=null && person.getDescription().length()>1) {
             getById(id).orElseThrow().setDescription(person.getDescription());
         }
+        if (person.getAvatar()!=null && person.getAvatar().length()>1) {
+            getById(id).orElseThrow().setAvatar(person.getAvatar());
+        }
+        if (person.getBanner()!=null && person.getBanner().length()>1) {
+            getById(id).orElseThrow().setBanner(person.getBanner());
+        }
         personRepository.save(getById(id).orElseThrow());
         return getById(id);
     }

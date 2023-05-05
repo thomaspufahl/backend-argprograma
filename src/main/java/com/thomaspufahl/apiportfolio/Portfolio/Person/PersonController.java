@@ -1,12 +1,17 @@
 package com.thomaspufahl.apiportfolio.Portfolio.Person;
 
+import com.thomaspufahl.apiportfolio.Tool.Storage.StorageManager;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @CrossOrigin
@@ -16,6 +21,8 @@ import java.util.Optional;
 public class PersonController {
 
     private final PersonManager personManager;
+    private final StorageManager storageManager;
+    private final HttpServletRequest request;
     @GetMapping
     public ResponseEntity<List<Person>> getAll() {
         return new ResponseEntity<>(personManager.getAll(), HttpStatus.OK);
@@ -24,6 +31,40 @@ public class PersonController {
     @GetMapping("/{person_id}")
     public ResponseEntity<Optional<Person>> getById(@PathVariable Integer person_id) {
         return new ResponseEntity<>(personManager.getById(person_id), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    @PostMapping("/modify/upload/avatar/{person_id}")
+    public Map<String, String> uploadAvatar(
+            @PathVariable Integer person_id,
+            @RequestParam("avatar") MultipartFile multipartFile
+    ) {
+        String path = storageManager.store(multipartFile);
+        String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
+        String url = ServletUriComponentsBuilder
+                .fromHttpUrl(host)
+                .path("/media/")
+                .path(path)
+                .toUriString();
+        personManager.editById(person_id, new Person(url, ""));
+        return Map.of("url", url);
+    }
+
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    @PostMapping("/modify/upload/banner/{person_id}")
+    public Map<String, String> uploadBanner(
+            @PathVariable Integer person_id,
+            @RequestParam("banner") MultipartFile multipartFile
+    ) {
+        String path = storageManager.store(multipartFile);
+        String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
+        String url = ServletUriComponentsBuilder
+                .fromHttpUrl(host)
+                .path("/media/")
+                .path(path)
+                .toUriString();
+        personManager.editById(person_id, new Person("", url));
+        return Map.of("url", url);
     }
 
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")

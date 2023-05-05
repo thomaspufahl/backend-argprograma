@@ -26,7 +26,10 @@ public class Person {
     private Integer id;
     private String firstname;
     private String lastname;
+    @Column(length = 1300)
     private String description;
+    private String avatar;
+    private String banner;
 
     @OneToOne
     private User user;
@@ -43,6 +46,10 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private Set<Project> projects;
 
+    public Person(String avatar, String banner) {
+        if (avatar!=null && avatar.length()>1) { setAvatar(avatar); }
+        if (banner!=null && banner.length()>1) { setBanner(banner); }
+    }
     public Person(User user) {
         this.user = user;
     }
