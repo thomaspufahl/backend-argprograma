@@ -48,6 +48,9 @@ public class ProjectService implements ProjectManager {
         if (project.getFinish()!=null) {
             getById(project_id).orElseThrow().setFinish(project.getFinish());
         }
+        if (project.getImg()!=null && project.getImg().length()>1) {
+            getById(project_id).orElseThrow().setImg(project.getImg());
+        }
         projectRepository.save(getById(project_id).orElseThrow());
         return getById(project_id);
     }

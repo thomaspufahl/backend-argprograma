@@ -62,38 +62,3 @@ public class StorageService implements StorageManager {
         }
     }
 }
-
-//    @PostMapping("/upload/{image_id}/{section}")
-//    public Map<String, String> uploadFile(
-//            @RequestParam("file")MultipartFile multipartFile,
-//            @PathVariable Integer image_id,
-//            @PathVariable Integer section
-//    ) {
-//        String path = storageManager.store(multipartFile);
-//        String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
-//        String url = ServletUriComponentsBuilder
-//                .fromHttpUrl(host)
-//                .path("/image/")
-//                .path(path)
-//                .toUriString();
-//        Image image = new Image();
-//        if (section == 1) {
-//            image.setBanner(url);
-//            imageManager.editById(image_id, image);
-//        } else if (section == 2) {
-//            image.setAvatar(url);
-//            imageManager.editById(image_id, image);
-//        }
-//        return Map.of("url", url);
-//    }
-
-//    @GetMapping("/{filename:.+}")
-//    public ResponseEntity<Resource> getFile(@PathVariable String filename) throws IOException {
-//        Resource file = storageManager.loadAsResource(filename);
-//        String contentType = Files.probeContentType(file.getFile().toPath());
-//
-//        return ResponseEntity
-//                .ok()
-//                .header(HttpHeaders.CONTENT_TYPE, contentType)
-//                .body(file);
-//    }

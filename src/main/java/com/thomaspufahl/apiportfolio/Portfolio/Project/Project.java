@@ -24,7 +24,12 @@ public class Project {
     private String description;
     private String link;
     private Date finish;
+    private String img;
 
     @ManyToOne
     private Person person;
+
+    public Project(String img) {
+        this.img = img;
+    }
 }
