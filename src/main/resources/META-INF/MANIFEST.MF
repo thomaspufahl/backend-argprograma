@@ -1,3 +1,33 @@
 Manifest-Version: 1.0
 Main-Class: com.thomaspufahl.apiportfolio.ApiPortfolioApplication
+Class-Path: jackson-databind-2.14.2.jar spring-security-web-6.0.2.jar sl
+ f4j-api-2.0.7.jar logback-classic-1.4.6.jar spring-boot-autoconfigure-3
+ .0.5.jar spring-boot-3.0.5.jar spring-boot-starter-logging-3.0.5.jar sp
+ ring-orm-6.0.7.jar log4j-to-slf4j-2.19.0.jar spring-boot-starter-json-3
+ .0.5.jar jakarta.transaction-api-2.0.1.jar micrometer-observation-1.10.
+ 5.jar jjwt-impl-0.11.5.jar jandex-2.4.2.Final.jar spring-boot-starter-d
+ ata-jpa-3.0.5.jar spring-security-crypto-6.0.2.jar spring-context-6.0.7
+ .jar mysql-connector-j-8.0.32.jar aspectjweaver-1.9.19.jar spring-aop-6
+ .0.7.jar tomcat-embed-core-10.1.7.jar spring-boot-starter-web-3.0.5.jar
+  jakarta.annotation-api-2.1.1.jar jakarta.xml.bind-api-4.0.0.jar spring
+ -boot-starter-tomcat-3.0.5.jar spring-security-core-6.0.2.jar classmate
+ -1.5.1.jar spring-data-jpa-3.0.4.jar logback-core-1.4.6.jar jackson-mod
+ ule-parameter-names-2.14.2.jar jaxb-core-4.0.2.jar spring-beans-6.0.7.j
+ ar jackson-core-2.14.2.jar jboss-logging-3.5.0.Final.jar hibernate-comm
+ ons-annotations-6.0.6.Final.jar antlr4-runtime-4.10.1.jar spring-jcl-6.
+ 0.7.jar spring-aspects-6.0.7.jar snakeyaml-1.33.jar spring-boot-starter
+ -jdbc-3.0.5.jar HikariCP-5.0.1.jar jackson-annotations-2.14.2.jar sprin
+ g-boot-starter-3.0.5.jar commons-lang3-3.12.0.jar tomcat-embed-websocke
+ t-10.1.7.jar byte-buddy-1.12.23.jar jul-to-slf4j-2.0.7.jar spring-web-6
+ .0.7.jar angus-activation-2.0.0.jar jjwt-api-0.11.5.jar spring-tx-6.0.7
+ .jar spring-expression-6.0.7.jar spring-webmvc-6.0.7.jar spring-core-6.
+ 0.7.jar hibernate-core-6.1.7.Final.jar jakarta.persistence-api-3.1.0.ja
+ r jakarta.inject-api-2.0.0.jar jackson-datatype-jsr310-2.14.2.jar jaxb-
+ runtime-4.0.2.jar spring-boot-starter-security-3.0.5.jar jakarta.activa
+ tion-api-2.1.1.jar spring-data-commons-3.0.4.jar istack-commons-runtime
+ -4.1.1.jar jackson-datatype-jdk8-2.14.2.jar spring-security-config-6.0.
+ 2.jar spring-boot-devtools-3.0.5.jar micrometer-commons-1.10.5.jar lomb
+ ok-1.18.26.jar log4j-api-2.19.0.jar tomcat-embed-el-10.1.7.jar jjwt-jac
+ kson-0.11.5.jar spring-boot-starter-aop-3.0.5.jar spring-jdbc-6.0.7.jar
+  txw2-4.0.2.jar
 

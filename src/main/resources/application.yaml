@@ -1,12 +1,10 @@
 spring:
   datasource:
-    url: jdbc:mysql://b7uitcr8kqgx29popgiz-mysql.services.clever-cloud.com:3306/b7uitcr8kqgx29popgiz?useSSL=false&serverTimezone=UTC
-    username: u3yfu7iunsu5t08n
-    password: lE4fGvO7kiAFZ6x9PYxq
+    url: jdbc:mysql://aws.connect.psdb.cloud:3306/argprograma-portfolio?
+    username: q3sf4u3x1c8aovu417re
+    password: pscale_pw_qmg0swrWVC7YXFUE9gCUTqZSeDzGEOJ13qO0UGdekOd
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    hibernate:
-      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
