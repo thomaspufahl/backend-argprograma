@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${URL}
-    username: ${USERNAME}
-    password: ${PASSWORD}
+    url: jdbc:mysql://aws.connect.psdb.cloud:3306/argprograma-portfolio?
+    username: byeogi1tkg1iqekflbtk
+    password: pscale_pw_9iRkakS02OkV9c2UK7sY2o5mj7CQbjvstFulT5SBne8
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
