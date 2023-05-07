@@ -1,10 +1,12 @@
 HELP.md
 .env
+production
+target
 
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.ipr
-
+.iml
 ### VS Code ###
 .vscode/
