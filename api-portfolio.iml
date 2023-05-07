@@ -5,6 +5,8 @@
     <content url="file://$MODULE_DIR$" dumb="true">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/resources" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
   </component>
   <component name="FacetManager">
